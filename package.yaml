@@ -1,0 +1,290 @@
+name:       aoc18
+version:    0.1.0.0
+github:     kshepard/aoc18
+license:    MIT
+author:     Kenneth Shepard
+maintainer: kshepard@gmail.com
+copyright:  2018 Kenneth Shepard
+
+extra-source-files:
+  - README.md
+
+synopsis: Advent of Code 2018 solutions
+category: Fun
+description: See the README at <https://github.com/kshepard/aoc18#readme>
+
+default-extensions:
+  - BangPatterns
+  - ConstraintKinds
+  - DataKinds
+  - DeriveGeneric
+  - DerivingStrategies
+  - FlexibleContexts
+  - FlexibleInstances
+  - GeneralizedNewtypeDeriving
+  - LambdaCase
+  - MultiParamTypeClasses
+  - OverloadedStrings
+  - RecordWildCards
+  - ScopedTypeVariables
+  - TypeApplications
+  - TypeOperators
+
+ghc-options:
+  -fwarn-unused-imports
+  -fwarn-unused-binds
+  -fwarn-name-shadowing
+  -fwarn-unused-matches
+  -fwarn-incomplete-patterns
+  -fwarn-incomplete-uni-patterns
+
+executables:
+  aoc18-day01:
+    main: Main.hs
+    source-dirs: src/Day01
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+
+  aoc18-day02:
+    main: Main.hs
+    source-dirs: src/Day02
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+
+  aoc18-day03:
+    main: Main.hs
+    source-dirs: src/Day03
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+
+  aoc18-day04:
+    main: Main.hs
+    source-dirs: src/Day04
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+
+  aoc18-day05:
+    main: Main.hs
+    source-dirs: src/Day05
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+
+  aoc18-day06:
+    main: Main.hs
+    source-dirs: src/Day06
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+
+  aoc18-day07:
+    main: Main.hs
+    source-dirs: src/Day07
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+
+  aoc18-day08:
+    main: Main.hs
+    source-dirs: src/Day08
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+
+  aoc18-day09:
+    main: Main.hs
+    source-dirs: src/Day09
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+
+  aoc18-day10:
+    main: Main.hs
+    source-dirs: src/Day10
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+
+  aoc18-day11:
+    main: Main.hs
+    source-dirs: src/Day11
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+
+  aoc18-day12:
+    main: Main.hs
+    source-dirs: src/Day12
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+
+  aoc18-day13:
+    main: Main.hs
+    source-dirs: src/Day13
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+
+  aoc18-day14:
+    main: Main.hs
+    source-dirs: src/Day14
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+
+  aoc18-day15:
+    main: Main.hs
+    source-dirs: src/Day15
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+
+  aoc18-day16:
+    main: Main.hs
+    source-dirs: src/Day16
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+
+  aoc18-day17:
+    main: Main.hs
+    source-dirs: src/Day17
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+
+  aoc18-day18:
+    main: Main.hs
+    source-dirs: src/Day18
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+
+  aoc18-day19:
+    main: Main.hs
+    source-dirs: src/Day19
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+
+  aoc18-day20:
+    main: Main.hs
+    source-dirs: src/Day20
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+
+  aoc18-day21:
+    main: Main.hs
+    source-dirs: src/Day21
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+
+  aoc18-day22:
+    main: Main.hs
+    source-dirs: src/Day22
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+
+  aoc18-day23:
+    main: Main.hs
+    source-dirs: src/Day23
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+
+  aoc18-day24:
+    main: Main.hs
+    source-dirs: src/Day24
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+
+  aoc18-day25:
+    main: Main.hs
+    source-dirs: src/Day25
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
