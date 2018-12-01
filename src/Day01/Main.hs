@@ -5,7 +5,6 @@ module Main
   )
 where
 
-import           Data.Foldable                  ( foldl' )
 import qualified Data.Set                      as S
 import           Data.Void                      ( Void )
 import           Text.Megaparsec                ( many
@@ -21,7 +20,7 @@ import           Text.Megaparsec.Char.Lexer     ( signed
 
 type Parser = Parsec Void String
 
-newtype FreqChange = FreqChange Int deriving (Show, Eq, Ord)
+newtype FreqChange = FreqChange Int deriving (Eq, Num, Ord, Show)
 
 freqChangeParser :: Parser FreqChange
 freqChangeParser = FreqChange <$> signed mempty decimal
@@ -32,10 +31,6 @@ parseLines parser path = do
   case parse (many (parser <* eol) <* eof) mempty input of
     Left  err -> error $ parseErrorPretty err
     Right x   -> pure x
-
-part1 :: [FreqChange] -> FreqChange
-part1 = foldl' (\(FreqChange acc) (FreqChange n) -> FreqChange (acc + n))
-               (FreqChange 0)
 
 part2 :: [FreqChange] -> FreqChange
 part2 freqChanges =
@@ -53,5 +48,5 @@ part2Helper freqSet (FreqChange curr : rest) (FreqChange acc)
 main :: IO ()
 main = do
   freqChanges <- parseLines freqChangeParser "input/01.txt"
-  print $ part1 freqChanges
+  print $ sum freqChanges
   print $ part2 freqChanges
