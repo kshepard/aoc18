@@ -32,15 +32,10 @@ parseLines parser path = do
     Left  err -> error $ parseErrorPretty err
     Right x   -> pure x
 
-part2 :: [FreqChange] -> FreqChange
-part2 freqChanges =
-  part2Helper (S.fromList [FreqChange 0]) (cycle freqChanges) (FreqChange 0)
-
-part2Helper :: S.Set FreqChange -> [FreqChange] -> FreqChange -> FreqChange
-part2Helper _ [] _ = error "Empty list"
-part2Helper freqSet (curr : rest) acc
-  | S.member newFreq freqSet = newFreq
-  | otherwise                = part2Helper newFreqSet rest newFreq
+part2 :: S.Set FreqChange -> [FreqChange] -> FreqChange -> FreqChange
+part2 _ [] _ = error "Empty list"
+part2 freqSet (curr : rest) acc | S.member newFreq freqSet = newFreq
+                                | otherwise = part2 newFreqSet rest newFreq
  where
   newFreq    = acc + curr
   newFreqSet = S.insert newFreq freqSet
@@ -49,4 +44,4 @@ main :: IO ()
 main = do
   freqChanges <- parseLines freqChangeParser "input/01.txt"
   print $ sum freqChanges
-  print $ part2 freqChanges
+  print $ part2 (S.fromList [FreqChange 0]) (cycle freqChanges) (FreqChange 0)
