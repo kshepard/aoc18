@@ -13,23 +13,6 @@ synopsis: Advent of Code 2018 solutions
 category: Fun
 description: See the README at <https://github.com/kshepard/aoc18#readme>
 
-default-extensions:
-  - BangPatterns
-  - ConstraintKinds
-  - DataKinds
-  - DeriveGeneric
-  - DerivingStrategies
-  - FlexibleContexts
-  - FlexibleInstances
-  - GeneralizedNewtypeDeriving
-  - LambdaCase
-  - MultiParamTypeClasses
-  - OverloadedStrings
-  - RecordWildCards
-  - ScopedTypeVariables
-  - TypeApplications
-  - TypeOperators
-
 ghc-options:
   -fwarn-unused-imports
   -fwarn-unused-binds

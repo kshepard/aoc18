@@ -1,5 +1,7 @@
 -- | Day 01
 
+{-# LANGUAGE GeneralizedNewtypeDeriving #-}
+
 module Main
   ( main
   )
