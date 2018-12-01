@@ -38,11 +38,11 @@ part2 freqChanges =
 
 part2Helper :: S.Set FreqChange -> [FreqChange] -> FreqChange -> FreqChange
 part2Helper _ [] _ = error "Empty list"
-part2Helper freqSet (FreqChange curr : rest) (FreqChange acc)
+part2Helper freqSet (curr : rest) acc
   | S.member newFreq freqSet = newFreq
   | otherwise                = part2Helper newFreqSet rest newFreq
  where
-  newFreq    = FreqChange (acc + curr)
+  newFreq    = acc + curr
   newFreqSet = S.insert newFreq freqSet
 
 main :: IO ()
