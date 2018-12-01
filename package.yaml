@@ -43,9 +43,7 @@ executables:
     main: Main.hs
     source-dirs: src/Day01
     ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
+      - -O2
     dependencies:
       - base
       - containers
@@ -55,9 +53,7 @@ executables:
     main: Main.hs
     source-dirs: src/Day02
     ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
+      - -O2
     dependencies:
       - base
 
@@ -65,9 +61,7 @@ executables:
     main: Main.hs
     source-dirs: src/Day03
     ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
+      - -O2
     dependencies:
       - base
 
@@ -75,9 +69,7 @@ executables:
     main: Main.hs
     source-dirs: src/Day04
     ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
+      - -O2
     dependencies:
       - base
 
@@ -85,9 +77,7 @@ executables:
     main: Main.hs
     source-dirs: src/Day05
     ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
+      - -O2
     dependencies:
       - base
 
@@ -95,9 +85,7 @@ executables:
     main: Main.hs
     source-dirs: src/Day06
     ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
+      - -O2
     dependencies:
       - base
 
@@ -105,9 +93,7 @@ executables:
     main: Main.hs
     source-dirs: src/Day07
     ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
+      - -O2
     dependencies:
       - base
 
@@ -115,9 +101,7 @@ executables:
     main: Main.hs
     source-dirs: src/Day08
     ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
+      - -O2
     dependencies:
       - base
 
@@ -125,9 +109,7 @@ executables:
     main: Main.hs
     source-dirs: src/Day09
     ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
+      - -O2
     dependencies:
       - base
 
@@ -135,9 +117,7 @@ executables:
     main: Main.hs
     source-dirs: src/Day10
     ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
+      - -O2
     dependencies:
       - base
 
@@ -145,9 +125,7 @@ executables:
     main: Main.hs
     source-dirs: src/Day11
     ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
+      - -O2
     dependencies:
       - base
 
@@ -155,9 +133,7 @@ executables:
     main: Main.hs
     source-dirs: src/Day12
     ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
+      - -O2
     dependencies:
       - base
 
@@ -165,9 +141,7 @@ executables:
     main: Main.hs
     source-dirs: src/Day13
     ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
+      - -O2
     dependencies:
       - base
 
@@ -175,9 +149,7 @@ executables:
     main: Main.hs
     source-dirs: src/Day14
     ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
+      - -O2
     dependencies:
       - base
 
@@ -185,9 +157,7 @@ executables:
     main: Main.hs
     source-dirs: src/Day15
     ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
+      - -O2
     dependencies:
       - base
 
@@ -195,9 +165,7 @@ executables:
     main: Main.hs
     source-dirs: src/Day16
     ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
+      - -O2
     dependencies:
       - base
 
@@ -205,9 +173,7 @@ executables:
     main: Main.hs
     source-dirs: src/Day17
     ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
+      - -O2
     dependencies:
       - base
 
@@ -215,9 +181,7 @@ executables:
     main: Main.hs
     source-dirs: src/Day18
     ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
+      - -O2
     dependencies:
       - base
 
@@ -225,9 +189,7 @@ executables:
     main: Main.hs
     source-dirs: src/Day19
     ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
+      - -O2
     dependencies:
       - base
 
@@ -235,9 +197,7 @@ executables:
     main: Main.hs
     source-dirs: src/Day20
     ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
+      - -O2
     dependencies:
       - base
 
@@ -245,9 +205,7 @@ executables:
     main: Main.hs
     source-dirs: src/Day21
     ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
+      - -O2
     dependencies:
       - base
 
@@ -255,9 +213,7 @@ executables:
     main: Main.hs
     source-dirs: src/Day22
     ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
+      - -O2
     dependencies:
       - base
 
@@ -265,9 +221,7 @@ executables:
     main: Main.hs
     source-dirs: src/Day23
     ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
+      - -O2
     dependencies:
       - base
 
@@ -275,9 +229,7 @@ executables:
     main: Main.hs
     source-dirs: src/Day24
     ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
+      - -O2
     dependencies:
       - base
 
@@ -285,8 +237,6 @@ executables:
     main: Main.hs
     source-dirs: src/Day25
     ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
+      - -O2
     dependencies:
       - base
