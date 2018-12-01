@@ -24,6 +24,9 @@ type Parser = Parsec Void String
 
 newtype FreqChange = FreqChange Int deriving (Eq, Num, Ord, Show)
 
+zero :: FreqChange
+zero = FreqChange 0
+
 freqChangeParser :: Parser FreqChange
 freqChangeParser = FreqChange <$> signed mempty decimal
 
@@ -51,7 +54,7 @@ part2 freqChanges = solution
                 , S.member newFreq accFreqSet
                 )
           )
-          (S.fromList [FreqChange 0], FreqChange 0, False)
+          (S.fromList [zero], zero, False)
       $ cycle freqChanges
 
 main :: IO ()
