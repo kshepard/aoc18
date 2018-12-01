@@ -48,6 +48,8 @@ executables:
       - -with-rtsopts=-N
     dependencies:
       - base
+      - containers
+      - megaparsec
 
   aoc18-day02:
     main: Main.hs
