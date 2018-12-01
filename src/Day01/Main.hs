@@ -34,21 +34,28 @@ parseLines parser path = do
     Left  err -> error $ parseErrorPretty err
     Right x   -> pure x
 
+part1 :: [FreqChange] -> FreqChange
+part1 = sum
+
+part2 :: [FreqChange] -> FreqChange
+part2 freqChanges = solution
+ where
+  (_, solution, _) =
+    head
+      . dropWhile (\(_, _, found) -> not found)
+      . scanl
+          (\(accFreqSet, accFreq, _) currFreq ->
+            let newFreq = accFreq + currFreq
+            in  ( S.insert newFreq accFreqSet
+                , newFreq
+                , S.member newFreq accFreqSet
+                )
+          )
+          (S.fromList [FreqChange 0], FreqChange 0, False)
+      $ cycle freqChanges
+
 main :: IO ()
 main = do
   freqChanges <- parseLines freqChangeParser "input/01.txt"
-  print $ sum freqChanges
-  let (_, part2, _) =
-        head
-          . dropWhile (\(_, _, found) -> not found)
-          . scanl
-              (\(accFreqSet, accFreq, _) currFreq ->
-                let newFreq = accFreq + currFreq
-                in  ( S.insert newFreq accFreqSet
-                    , newFreq
-                    , S.member newFreq accFreqSet
-                    )
-              )
-              (S.fromList [FreqChange 0], FreqChange 0, False)
-          $ cycle freqChanges
-  print part2
+  print $ part1 freqChanges
+  print $ part2 freqChanges
