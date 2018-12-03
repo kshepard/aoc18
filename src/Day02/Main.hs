@@ -1,10 +1,13 @@
 -- | Day 02
 
+{-# LANGUAGE TupleSections #-}
+
 module Main
   ( main
   )
 where
 
+import           Data.Foldable                  ( foldl' )
 import           Data.List                      ( tails )
 import qualified Data.Map                      as M
 import           Data.Void                      ( Void )
@@ -32,25 +35,39 @@ parseLines parser path = do
     Left  err -> error $ parseErrorPretty err
     Right x   -> pure x
 
-part1 :: [BoxId] -> Int
-part1 boxIds = numMatch 2 * numMatch 3
+frequencyMap :: Ord a => [a] -> M.Map a Int
+frequencyMap = M.fromListWith (+) . fmap (, 1)
+
+appearancesTwosThrees :: Ord a => [a] -> (Bool, Bool)
+appearancesTwosThrees = foldl' f (False, False) . frequencyMap
+  where f (twos, threes) x = (twos || x == 2, threes || x == 3)
+
+appearanceCounts :: [BoxId] -> (Int, Int)
+appearanceCounts = foldl' f (0, 0)
  where
-  freq (BoxId input) = M.toList $ M.fromListWith (+) [ (c, 1) | c <- input ]
-  freqs = freq <$> boxIds
-  mkCounts num = not . null <$> filter (\(_, c) -> c == num)
-  numMatch num = length . filter (== True) $ mkCounts num <$> freqs
+  f (twos, threes) (BoxId x) =
+    let (apTwo, apThree) = appearancesTwosThrees x
+    in  (twos + fromEnum apTwo, threes + fromEnum apThree)
+
+oneOff :: Eq a => [a] -> [a] -> Bool
+oneOff xs ys = length (filter (uncurry (/=)) (zip xs ys)) == 1
+
+matchingLetters :: (BoxId, BoxId) -> String
+matchingLetters (BoxId x, BoxId y) = fst <$> filter (uncurry (==)) (zip x y)
+
+correctBoxIds :: [BoxId] -> (BoxId, BoxId)
+correctBoxIds boxIds = head $ filter
+  (\(BoxId x, BoxId y) -> oneOff x y)
+  [ (x, y) | (x : xs) <- tails boxIds, y <- xs ]
+
+part1 :: [BoxId] -> Int
+part1 boxIds = twos * threes where (twos, threes) = appearanceCounts boxIds
 
 part2 :: [BoxId] -> String
-part2 boxIds = matchingLetters correctBoxIds
- where
-  matchingLetters (BoxId x, BoxId y) = fst <$> filter (uncurry (==)) (zip x y)
-  oneOff x y = length (filter (uncurry (/=)) (zip x y)) == 1
-  correctBoxIds = head $ filter
-    (\(BoxId x, BoxId y) -> oneOff x y)
-    [ (x, y) | (x : rest) <- tails boxIds, y <- rest ]
+part2 = matchingLetters . correctBoxIds
 
 main :: IO ()
 main = do
   boxIds <- parseLines boxIdParser "input/02.txt"
   print $ part1 boxIds
-  print $ part2 boxIds
+  putStrLn $ part2 boxIds
