@@ -39,10 +39,7 @@ data Bbox =
        , se :: !Coord
        } deriving (Show)
 
-newtype Grid = Grid (Coord -> Maybe Coord)
-
-emptyGrid :: Grid
-emptyGrid = Grid $ const Nothing
+newtype Grid a = Grid (Coord -> a)
 
 coordParser :: Parser Coord
 coordParser = do
@@ -90,29 +87,41 @@ closest coord places = if length minMatches == 1
   minDistance = minimum $ snd <$> dists
   minMatches  = filter (\(_, d) -> d == minDistance) dists
 
-mkGrid :: [Coord] -> [Coord] -> Grid
-mkGrid places = foldl' updateGrid emptyGrid
- where
-  updateGrid (Grid g) coord =
-    Grid $ \c -> if c == coord then closest c places else g c
+sumDistances :: Coord -> [Coord] -> Int
+sumDistances coord = sum . fmap snd . distances coord
 
-findInfinites :: Grid -> [Coord] -> [Coord]
+findInfinites :: Grid (Maybe Coord) -> [Coord] -> [Coord]
 findInfinites (Grid g) = nub . mapMaybe g
 
 frequencyMap :: Ord a => [a] -> M.Map a Int
 frequencyMap = M.fromListWith (+) . fmap (, 1)
 
-part1 :: [Coord] -> [(Coord, Int)] -> Int
-part1 infinites =
-  snd . maximumBy (comparing snd) . filter (\(c, _) -> notElem c infinites)
+part1 :: [Coord] -> Int
+part1 places =
+  snd
+    . maximumBy (comparing snd)
+    . filter (\(c, _) -> notElem c infinites)
+    $ areas
+ where
+  bbox          = mkBbox places
+  allCoords     = coordsInBbox bbox
+  infinites     = findInfinites grid $ edgeCoords bbox allCoords
+  areas         = M.toList . frequencyMap . mapMaybe g $ allCoords
+  grid@(Grid g) = foldl' updateGrid (Grid $ const Nothing) allCoords
+  updateGrid (Grid accFn) coord =
+    Grid $ \c -> if c == coord then closest c places else accFn c
+
+part2 :: [Coord] -> Int
+part2 places = length $ filter (\c -> g c < 10000) allCoords
+ where
+  bbox      = mkBbox places
+  allCoords = coordsInBbox bbox
+  (Grid g)  = foldl' updateGrid (Grid $ const 0) allCoords
+  updateGrid (Grid accFn) coord =
+    Grid $ \c -> if c == coord then sumDistances c places else accFn c
 
 main :: IO ()
 main = do
   places <- parseLines coordParser "input/06.txt"
-  let bbox          = mkBbox places
-      allCoords     = coordsInBbox bbox
-      edges         = edgeCoords bbox allCoords
-      grid@(Grid g) = mkGrid places allCoords
-      infinites     = findInfinites grid edges
-      areas         = M.toList . frequencyMap . mapMaybe g $ allCoords
-  print $ part1 infinites areas
+  print $ part1 places
+  print $ part2 places
