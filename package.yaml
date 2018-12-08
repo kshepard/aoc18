@@ -95,6 +95,9 @@ executables:
       - -O2
     dependencies:
       - base
+      - containers
+      - lens
+      - megaparsec
 
   aoc18-day09:
     main: Main.hs
