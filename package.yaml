@@ -106,6 +106,9 @@ executables:
       - -O2
     dependencies:
       - base
+      - containers
+      - megaparsec
+      - pointedlist
 
   aoc18-day10:
     main: Main.hs
