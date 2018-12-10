@@ -90,25 +90,13 @@ step :: [Point] -> [Point]
 step =
   fmap (\Point {..} -> Point {px = px + vx, py = py + vy, vx = vx, vy = vy})
 
-area :: [Point] -> Int
-area point = maxx - minx * maxy - miny where Bbox {..} = mkBbox point
+height :: [Point] -> Int
+height point = maxy - miny where Bbox {..} = mkBbox point
 
-solve :: [Point] -> ([[Point]], Int)
-solve = go (maxBound :: Int) mempty 0
- where
-  go prevArea prevPoints count points = if newArea > prevArea
-    then
-      ( [prevPoints, points, newPoints, step newPoints, (step . step) newPoints]
-      , count
-      )
-    else go newArea points (count + 1) newPoints
-   where
-    newPoints = step points
-    newArea   = area points
+solve :: [Point] -> [(Int, [Point])]
+solve = take 1 . filter ((< 10) . height . snd) . zip [0 ..] . iterate step
 
 main :: IO ()
 main = do
   points <- parseLines pointParser "input/10.txt"
-  let (grids, count) = solve points
-  mapM_ displayGrid grids
-  print count
+  mapM_ (\(n, ps) -> displayGrid ps >> print n) $ solve points
