@@ -117,6 +117,8 @@ executables:
       - -O2
     dependencies:
       - base
+      - containers
+      - megaparsec
 
   aoc18-day11:
     main: Main.hs
