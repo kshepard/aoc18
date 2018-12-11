@@ -1,6 +1,5 @@
 -- | Day 06
 
-{-# LANGUAGE RecordWildCards #-}
 {-# LANGUAGE TupleSections #-}
 
 module Main
