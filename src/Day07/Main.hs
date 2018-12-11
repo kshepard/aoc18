@@ -102,10 +102,8 @@ part2 = go 0 mempty
           workers' = tickDown <$> workers
       in  go (elapsed + Seconds 1) workers' deps
    where
-    available = availableSteps deps L.\\ (workingOn <$> workers)
-    nextStep  = chooseStep available
-    finished  = filter (\w -> remaining w == 0) workers
-    working   = filter (\w -> remaining w /= 0) workers
+    nextStep = chooseStep $ availableSteps deps L.\\ (workingOn <$> workers)
+    (finished, working) = L.partition (\w -> remaining w == 0) workers
 
 addlSeconds :: Int
 addlSeconds = 60
