@@ -87,6 +87,8 @@ executables:
       - -O2
     dependencies:
       - base
+      - containers
+      - megaparsec
 
   aoc18-day08:
     main: Main.hs
@@ -127,6 +129,7 @@ executables:
       - -O2
     dependencies:
       - base
+      - containers
 
   aoc18-day12:
     main: Main.hs
