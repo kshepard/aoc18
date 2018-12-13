@@ -138,6 +138,9 @@ executables:
       - -O2
     dependencies:
       - base
+      - containers
+      - lens
+      - megaparsec
 
   aoc18-day13:
     main: Main.hs
