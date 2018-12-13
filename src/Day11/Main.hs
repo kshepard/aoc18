@@ -36,10 +36,10 @@ part1 cells sqSize = foldl' step ((0, 0), 0) $ M.toList cells
 
 part2 :: M.Map (Int, Int) Int -> (((Int, Int), Int), Int)
 part2 cells = foldl' step (((0, 0), 0), 0) [1 .. 20]
-  where
-    step acc@(((_, _), maxPow), _) sqSize =
-      let p1@((_, _), pow) = part1 cells sqSize
-      in if pow > maxPow then (p1, sqSize) else acc
+ where
+  step acc@(((_, _), maxPow), _) sqSize =
+    let p1@((_, _), pow) = part1 cells sqSize
+    in  if pow > maxPow then (p1, sqSize) else acc
 
 main :: IO ()
 main = do
