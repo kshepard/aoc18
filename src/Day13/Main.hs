@@ -41,10 +41,7 @@ data Cart =
        , dir    :: !Dir
        , turn   :: !Turn
        , status :: !Status
-       } deriving (Eq)
-
-instance Show Cart where
-  show (Cart (Coord x1 y1) dir turn _) = show (x1, y1) ++ " " ++ show dir ++ " " ++ show turn
+       } deriving (Eq, Show)
 
 instance Ord Cart where
   c1 `compare` c2 = coord c1 `compare` coord c2
@@ -139,14 +136,22 @@ move t@(Track track) carts cart = case status cart of
     in
       Cart {coord = coord', dir = dir', turn = turn', status = status'}
 
-tick :: Track -> [Cart] -> [Cart]
-tick track carts = snd . foldl' step (S.fromList carts, mempty) . sort $ carts
+crashed :: Cart -> Bool
+crashed Cart {..} = status == Crashed
+
+tick :: Track -> Bool -> [Cart] -> [Cart]
+tick track removeCrashes carts =
+  maybeRemove . snd . foldl' step (S.fromList carts, mempty) . sort $ carts
  where
   step (cartSet, cartsAcc) cart =
     let setWithoutCurr = S.delete cart cartSet
         movedCart      = move track (S.toList setWithoutCurr) cart
         cartSet'       = S.insert movedCart setWithoutCurr
     in  (cartSet', movedCart : cartsAcc)
+  crashCoords = fmap coord . filter crashed
+  maybeRemove cs = if removeCrashes
+    then filter (\c -> coord c `notElem` crashCoords cs) cs
+    else cs
 
 part1 :: Track -> [Cart] -> Coord
 part1 track =
@@ -156,10 +161,15 @@ part1 track =
     . head
     . take 1
     . dropWhile (not . any crashed)
-    . iterate (tick track)
-  where crashed Cart {..} = status == Crashed
+    . iterate (tick track False)
+
+part2 :: Track -> [Cart] -> Coord
+part2 track =
+  coord . head . head . take 1 . dropWhile (\cs -> length cs > 1) . iterate
+    (tick track True)
 
 main :: IO ()
 main = do
   (track, carts) <- parse . lines <$> readFile "input/13.txt"
   print $ part1 track carts
+  print $ part2 track carts
