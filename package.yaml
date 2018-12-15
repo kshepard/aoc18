@@ -149,6 +149,7 @@ executables:
       - -O2
     dependencies:
       - base
+      - containers
 
   aoc18-day14:
     main: Main.hs
