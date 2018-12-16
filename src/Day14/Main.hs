@@ -8,7 +8,9 @@ module Main
 where
 
 import           Data.Char                      ( digitToInt )
-import           Data.Foldable                  ( toList, foldl' )
+import           Data.Foldable                  ( toList
+                                                , foldl'
+                                                )
 import           Data.List                      ( isInfixOf
                                                 , tails
                                                 , isPrefixOf
