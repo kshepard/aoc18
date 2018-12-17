@@ -168,6 +168,7 @@ executables:
     dependencies:
       - base
       - containers
+      - utility-ht
 
   aoc18-day16:
     main: Main.hs
