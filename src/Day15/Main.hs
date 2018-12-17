@@ -33,7 +33,7 @@ instance Ord Coord where
 instance Show Coord where
   show Coord {..} = "(" ++ show cx ++ "," ++ show cy ++ ")"
 
-data UnitType = Elf | Goblin deriving (Show, Eq, Ord)
+data UnitType = Elf | Goblin deriving (Eq, Ord)
 
 data Unit =
   Unit { unitType    :: !UnitType
@@ -85,14 +85,9 @@ parse strLines = Cave walls units
     'G' -> (False, Just Goblin)
     _   -> (False, Nothing)
 
-noWall :: Cave -> Coord -> Bool
-noWall Cave {..} coord = S.notMember coord walls
-
-noUnit :: Cave -> Coord -> Bool
-noUnit Cave {..} coord = isNothing $ M.lookup coord units
-
 open :: Cave -> Coord -> Bool
-open cave coord = noWall cave coord && noUnit cave coord
+open Cave {..} coord =
+  S.notMember coord walls && isNothing (M.lookup coord units)
 
 buildEdges :: Cave -> [(Coord, Coord, Float)]
 buildEdges cave = openCoords >>= edges
@@ -143,9 +138,9 @@ nextCoord cave graph coord =
   enemyAdjacents = filter someOpen $ inRange cave originUnit
   someOpen       = not . L.null . openAdjacents cave
   coordPairs     = [ (a1, a2) | a1 <- unitAdjacents, a2 <- enemyAdjacents ]
-  paths'         = mapMaybe (\(c1, c2) -> shortestPath c1 c2 graph) coordPairs
+  initialPaths   = mapMaybe (\(c1, c2) -> shortestPath c1 c2 graph) coordPairs
   oneAways       = filter (\c -> adjToEnemy cave (c, originUnit)) unitAdjacents
-  paths          = paths' <> (pure <$> oneAways)
+  paths          = initialPaths <> (pure <$> oneAways)
   shortestLength = minimum $ length <$> paths
   shortestPaths  = filter (\p -> length p == shortestLength) paths
   shortestDest   = minimum $ last <$> shortestPaths
@@ -170,9 +165,7 @@ attackable cave coord = filter isEnemy $ mkAdjacents coord
  where
   isEnemy c = case (M.lookup c (units cave), M.lookup coord (units cave)) of
     (Just unit, Just other) -> enemy unit other
-    (_, Nothing) ->
-      error $ "Coord: " ++ show coord ++ "Units: " ++ show (units cave)
-    _ -> False
+    _                       -> False
 
 enemy :: Unit -> Unit -> Bool
 enemy u1 u2 = u1 /= u2 && unitType u1 /= unitType u2
