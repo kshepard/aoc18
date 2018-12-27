@@ -186,6 +186,9 @@ executables:
       - -O2
     dependencies:
       - base
+      - containers
+      - megaparsec
+      - mtl
 
   aoc18-day18:
     main: Main.hs
