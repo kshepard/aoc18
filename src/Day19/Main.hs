@@ -1,7 +1,6 @@
 -- | Day 19
 
 {-# LANGUAGE RecordWildCards #-}
-{-# LANGUAGE TupleSections #-}
 
 module Main
   ( main
