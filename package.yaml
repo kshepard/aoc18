@@ -216,6 +216,8 @@ executables:
       - -O2
     dependencies:
       - base
+      - containers
+      - utility-ht
 
   aoc18-day21:
     main: Main.hs
