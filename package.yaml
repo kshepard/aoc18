@@ -249,6 +249,7 @@ executables:
       - base
       - containers
       - megaparsec
+      - sbv
 
   aoc18-day24:
     main: Main.hs

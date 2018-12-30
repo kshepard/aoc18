@@ -3,7 +3,10 @@ resolver: lts-12.16
 packages:
 - .
 
-extra-deps: []
+extra-deps:
+- sbv-7.13
+- crackNum-2.3
+- FloatingHex-0.4
 
 flags: {}
 
