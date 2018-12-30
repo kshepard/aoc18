@@ -238,6 +238,7 @@ executables:
       - base
       - containers
       - megaparsec
+      - utility-ht
 
   aoc18-day23:
     main: Main.hs
