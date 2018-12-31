@@ -176,7 +176,20 @@ simulate groups | groups == groups' = groups
 part1 :: [Group] -> Int
 part1 = sum . fmap numUnits . simulate
 
+part2 :: [Group] -> Int
+part2 groups = go 1
+ where
+  go boost | immuneSystemWins = sum . fmap numUnits $ groups'
+           | otherwise        = go $ boost + 1
+   where
+    groups'          = simulate $ doBoost <$> groups
+    immuneSystemWins = not $ any (\g -> unitType g == Infection) groups'
+    doBoost g = if unitType g == ImmuneSystem
+      then g { attackAmt = attackAmt g + boost }
+      else g
+
 main :: IO ()
 main = do
   groups <- parseInput <$> readFile "input/24.txt"
   print $ part1 groups
+  print $ part2 groups
