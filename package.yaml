@@ -268,3 +268,5 @@ executables:
       - -O2
     dependencies:
       - base
+      - containers
+      - megaparsec
